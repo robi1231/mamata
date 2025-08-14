@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #BFF0FE, #0072ff);
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .center-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-box, .dashboard-box {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
+    .login-box h2, .dashboard-box h2 {
+      margin-bottom: 20px;
+      color: #0072ff;
+    }
+    .form-control {
+      margin-bottom: 15px;
+    }
+    .btn-login, .btn-dashboard {
+      background-color: #0072ff;
+      color: white;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    @media (max-width: 500px) {
+      .login-box, .dashboard-box {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="center-box">
+  <div class="login-box" id="loginContainer">
+    
+	<!-- Logo -->
+   <div style="text-align:center; margin-bottom:15px;">
+   <img src="logo.png" 
+       alt="Logo" 
+       style="width:100px; height:100px">
+   </div>
+
+    <h2>Admin IT</h2>
+    <input type="text" id="username" class="form-control" placeholder="Username" />
+    <input type="password" id="password" class="form-control" placeholder="Password" />
+    <button class="btn btn-login" onclick="handleLogin()">Login</button>
+  </div>
+
+  <div class="dashboard-box" id="dashboard" style="display: none;">
+    <div style="text-align: right;">
+      <button onclick="logoutUser()" style="background-color:#f44336; color:white; border:none; padding:7px 7px; font-size:10px; border-radius:3px; cursor:pointer;">
+        Logout
+      </button>
+    </div>
+    <h4>Dashboard</h4>
+    <button id="btnKaspersky" class="btn btn-dashboard" style="display:none;" onclick="openSheet('https://docs.google.com/spreadsheets/d/1jUSgjlznxDFCSCnsd3FX4NPShDdnPTMhSMJuN_p74V0')">Kaspersky Stock</button>
+    <button id="btnMfcib" class="btn btn-dashboard" style="display:none;" onclick="openSheet('https://docs.google.com/document/d/1jCOGibq1VOw9rxeUAFZEvaTQfCoHrKZ-')">MFCIB LIST</button>
+    <button id="btnBranch" class="btn btn-dashboard" style="display:none;" onclick="openSheet('https://docs.google.com/document/d/1BZSVw173a-lfUotKz6TaHzvy26qZvSK-e0NXkTNfPEc')">Branch Email ID</button>
+    <button id="btnCctvadmin" class="btn btn-dashboard" style="display:none;" onclick="openSheet('http://202.53.165.214:8482')">CCTV ADMIN</button>
+    <button id="btnIpphone" class="btn btn-dashboard" style="display:none;" onclick="openSheet('http://202.53.165.214:8483')">IP Phone</button>
+    <button id="btnNasadmin" class="btn btn-dashboard" style="display:none;" onclick="openSheet('http://202.53.165.214:8485')">NAS ADMIN</button>
+  </div>
+</div>
+
+<script>
+  // =======================
+  // MANUAL USER LIST
+  // =======================
+  const users = [
+    {
+      username: "robi",
+      password: "robi123",
+      access: ["kasper", "mfcib", "branch", "cctvadmin", "ipphone", "nasadmin"]  // full access
+    },
+    {
+      username: "admin",
+      password: "robi123",
+      access: ["kasper", "mfcib", "branch"]   // সীমিত access
+    }
+  ];
+
+  function handleLogin() {
+    const user = document.getElementById("username").value.trim();
+    const pass = document.getElementById("password").value.trim();
+
+    const loggedUser = users.find(u => u.username === user && u.password === pass);
+
+    if (loggedUser) {
+      document.getElementById("loginContainer").style.display = "none";
+      document.getElementById("dashboard").style.display = "block";
+
+      // reset all buttons hidden
+      document.getElementById("btnKaspersky").style.display = "none";
+      document.getElementById("btnMfcib").style.display = "none";
+      document.getElementById("btnBranch").style.display = "none";
+      document.getElementById("btnCctvadmin").style.display = "none";
+      document.getElementById("btnIpphone").style.display = "none";
+      document.getElementById("btnNasadmin").style.display = "none";
+
+      // show based on access
+      if (loggedUser.access.includes("kasper")) document.getElementById("btnKaspersky").style.display = "block";
+      if (loggedUser.access.includes("mfcib")) document.getElementById("btnMfcib").style.display = "block";
+      if (loggedUser.access.includes("branch")) document.getElementById("btnBranch").style.display = "block";
+      if (loggedUser.access.includes("cctvadmin")) document.getElementById("btnCctvadmin").style.display = "block";
+      if (loggedUser.access.includes("ipphone")) document.getElementById("btnIpphone").style.display = "block";
+      if (loggedUser.access.includes("nasadmin")) document.getElementById("btnNasadmin").style.display = "block";
+
+    } else {
+      alert("❌ Invalid credentials. Try again.");
+    }
+  }
+
+  function openSheet(url) {
+    window.open(url, "_blank");
+  }
+
+  function logoutUser() {
+    document.getElementById("dashboard").style.display = "none";
+    document.getElementById("loginContainer").style.display = "block";
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+  }
+</script>
+</body>
+</html>
