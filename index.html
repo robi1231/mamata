@@ -78,6 +78,7 @@
     <button id="btnCctvadmin" class="btn btn-dashboard" style="display:none;" onclick="openSheet('http://202.53.165.214:8482')">CCTV ADMIN</button>
     <button id="btnIpphone" class="btn btn-dashboard" style="display:none;" onclick="openSheet('http://202.53.165.214:8483')">IP Phone</button>
     <button id="btnNasadmin" class="btn btn-dashboard" style="display:none;" onclick="openSheet('http://202.53.165.214:8485')">NAS ADMIN</button>
+	<button id="btnpassword" class="btn btn-dashboard" style="display:none;" onclick="openSheet('https://drive.google.com/file/d/1t82KD0PVv7UNJmuQcupaxyzFVSJGB1Nj/view?usp=sharing')">PASSWORD</button>
   </div>
 </div>
 
@@ -89,7 +90,7 @@
     {
       username: "admin",
       password: "robi123@",
-      access: ["kasper", "mfcib", "branch", "cctvadmin", "ipphone", "nasadmin"]  // full access
+      access: ["kasper", "mfcib", "branch", "cctvadmin", "ipphone", "nasadmin", "password"]  // full access
     },
     {
       username: "asad",
@@ -115,6 +116,7 @@
       document.getElementById("btnCctvadmin").style.display = "none";
       document.getElementById("btnIpphone").style.display = "none";
       document.getElementById("btnNasadmin").style.display = "none";
+	  document.getElementById("btnpassword").style.display = "none";
 
       // show based on access
       if (loggedUser.access.includes("kasper")) document.getElementById("btnKaspersky").style.display = "block";
@@ -123,6 +125,7 @@
       if (loggedUser.access.includes("cctvadmin")) document.getElementById("btnCctvadmin").style.display = "block";
       if (loggedUser.access.includes("ipphone")) document.getElementById("btnIpphone").style.display = "block";
       if (loggedUser.access.includes("nasadmin")) document.getElementById("btnNasadmin").style.display = "block";
+	  if (loggedUser.access.includes("password")) document.getElementById("btnpassword").style.display = "block";
 
     } else {
       alert("❌ Invalid credentials. Try again.");
@@ -142,5 +145,6 @@
 </script>
 </body>
 </html>
+
 
 
