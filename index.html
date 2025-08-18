@@ -72,6 +72,26 @@
       </button>
     </div>
     <h4>Dashboard</h4>
+
+     <div style="width: fit-content; margin: auto; border: 2px solid #ccc; padding: 8px; text-align: center;">
+  <ul style="list-style: none; padding: 0; margin: 0;">
+    <div id="passwordSection" style="display: none;">
+	  <li>Ip Phone</li>
+      <li>User:admin</li>
+      <li>Pass:robi</li>
+	  <li>Nas Server</li>
+	  <li>User:robi</li>
+	  <li>Pss:robi</li>
+    </div>
+  </ul>
+  <button onclick="document.getElementById('passwordSection').style.display='block'; this.style.display='none'; document.getElementById('hideBtn').style.display='inline-block';" id="showBtn">
+    Show Password
+  </button>
+  <button onclick="document.getElementById('passwordSection').style.display='none'; this.style.display='none'; document.getElementById('showBtn').style.display='inline-block';" id="hideBtn" style="display: none;">
+    Hide Password
+  </button>
+</div>
+	  
     <button id="btnKaspersky" class="btn btn-dashboard" style="display:none;" onclick="openSheet('https://docs.google.com/spreadsheets/d/1jUSgjlznxDFCSCnsd3FX4NPShDdnPTMhSMJuN_p74V0')">Kaspersky Stock</button>
     <button id="btnMfcib" class="btn btn-dashboard" style="display:none;" onclick="openSheet('https://docs.google.com/document/d/1jCOGibq1VOw9rxeUAFZEvaTQfCoHrKZ-')">MFCIB LIST</button>
     <button id="btnBranch" class="btn btn-dashboard" style="display:none;" onclick="openSheet('https://docs.google.com/document/d/1BZSVw173a-lfUotKz6TaHzvy26qZvSK-e0NXkTNfPEc')">Branch Email ID</button>
@@ -145,6 +165,7 @@
 </script>
 </body>
 </html>
+
 
 
 
