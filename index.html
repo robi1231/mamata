@@ -170,9 +170,25 @@
     document.getElementById("username").value = "";
     document.getElementById("password").value = "";
   }
+  // Enter key detection (username + password field)
+document.getElementById("username").addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    handleLogin();
+  }
+});
+
+document.getElementById("password").addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    handleLogin();
+  }
+});
+	
 </script>
 </body>
 </html>
+
 
 
 
